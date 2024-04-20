@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Stopwatch = () => {
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(-1); // Initial state set to -1
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const Stopwatch = () => {
 
     if (isRunning) {
       intervalId = setInterval(() => {
-        setTime(prevTime => prevTime + 1);
+        setTime(prevTime => prevTime + 1); // Increment time by 1 every second
       }, 1000);
     } else {
       clearInterval(intervalId);
@@ -19,6 +19,7 @@ const Stopwatch = () => {
   }, [isRunning]);
 
   const startStopwatch = () => {
+    setTime(0); // Set time to 0 when starting
     setIsRunning(true);
   };
 
@@ -27,7 +28,7 @@ const Stopwatch = () => {
   };
 
   const resetStopwatch = () => {
-    setTime(0);
+    setTime(-1); // Reset time to -1
     setIsRunning(false);
   };
 
@@ -40,7 +41,7 @@ const Stopwatch = () => {
   return (
     <div className="stopwatch-container">
       <h2>Stopwatch</h2>
-      <div className="time">{formatTime()}</div>
+      <div className="time">{time === -1 ? '0:00' : formatTime()}</div> {/* Adjust initial time display */}
       <div className="buttons">
         {isRunning ? (
           <button onClick={stopStopwatch}>Stop</button>
