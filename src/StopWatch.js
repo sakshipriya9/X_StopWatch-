@@ -8,9 +8,9 @@ const Stopwatch = () => {
     let intervalId;
 
     if (isRunning) {
-      const startTime = Date.now() - time * 1000; // Calculate start time based on current time and elapsed time
+      const startTime = Date.now() - time * 1000;
       intervalId = setInterval(() => {
-        setTime(Math.floor((Date.now() - startTime) / 1000)); // Update time based on elapsed time
+        setTime(Math.floor((Date.now() - startTime) / 1000));
       }, 1000);
     } else {
       clearInterval(intervalId);
@@ -41,7 +41,7 @@ const Stopwatch = () => {
   return (
     <div className="stopwatch-container">
       <h2>Stopwatch</h2>
-      <div className="time">{formatTime()}</div>
+      <div className="time">Time: {formatTime()}</div> {/* Adjust time display */}
       <div className="buttons">
         {isRunning ? (
           <button onClick={stopStopwatch}>Stop</button>
